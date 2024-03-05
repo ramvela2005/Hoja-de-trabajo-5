@@ -39,3 +39,24 @@ def simulate_process_time_double_processors(n_processes, interval):
     
     # Retornar los resultados
     return average_time, std_dev
+
+# Ejecutar la simulación con diferentes cantidades de procesos
+n_processes = [25, 50, 100, 150, 200]
+
+# Ejecutar la simulación con diferentes intervalos
+intervals = [1, 5, 10]
+
+# Guardar los resultados en una lista de listas para 1 procesador
+results_single_processor = []
+for n in n_processes:
+    for i in intervals:
+        average_time, std_dev = simulate_process_time_single_processor(n, i)
+        results_single_processor.append([n, i, average_time, std_dev])
+
+# Guardar los resultados en una lista de listas para 2 procesadores
+results_double_processors = []
+for n in n_processes:
+    for i in intervals:
+        average_time, std_dev = simulate_process_time_double_processors(n, i)
+        results_double_processors.append([n, i, average_time, std_dev])
+
