@@ -59,4 +59,28 @@ for n in n_processes:
     for i in intervals:
         average_time, std_dev = simulate_process_time_double_processors(n, i)
         results_double_processors.append([n, i, average_time, std_dev])
+        
+# Crear gráficas
+plt.figure(figsize=(12, 6))
+
+# Gráfica para 1 procesador
+plt.subplot(1, 2, 1)
+for i in range(len(intervals)):
+    plt.plot(n_processes, [result[2] for result in results_single_processor if result[1] == intervals[i]], label=f'Intervalo {intervals[i]}')
+plt.xlabel('Número de procesos')
+plt.ylabel('Tiempo promedio (s)')
+plt.title('Tiempo promedio de ejecución con 1 procesador')
+plt.legend()
+
+# Gráfica para 2 procesadores
+plt.subplot(1, 2, 2)
+for i in range(len(intervals)):
+    plt.plot(n_processes, [result[2] for result in results_double_processors if result[1] == intervals[i]], label=f'Intervalo {intervals[i]}')
+plt.xlabel('Número de procesos')
+plt.ylabel('Tiempo promedio (s)')
+plt.title('Tiempo promedio de ejecución con 2 procesadores')
+plt.legend()
+
+plt.tight_layout()
+plt.show()
 
